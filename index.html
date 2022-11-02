@@ -2,11 +2,7 @@
 <html data-theme="bumblebee" lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="img/icon/60646_live_nba_icon.png"
-    />
+    <link rel="icon" type="image/svg+xml" href="img/icon/restaurant.png" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
@@ -19,7 +15,7 @@
       crossorigin=""
     ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NBA PLayer Stats</title>
+    <title>Manhattan Italian Restaurants</title>
   </head>
   <body>
     <div class="container mx-auto h-screen flex flex-col justify-between">
@@ -54,7 +50,12 @@
         </div>
         <div class="navbar-center">
           <a class="btn btn-ghost normal-case text-xl" href="index.html"
-            >NBA Player Stats</a
+            ><img
+              src="img/icon/restaurant.png"
+              alt="icon-restaurant"
+              class="h-6 mr-2"
+            />
+            Manhattan Italian Restaurants</a
           >
         </div>
         <div class="navbar-end">
@@ -95,6 +96,48 @@
           </button>
         </div>
       </div>
+
+      <div>
+        <div class="flex items-center mb-6">
+          <div class="stat-desc">Nome del ristorante: &nbsp;</div>
+          <div class="nome-ristorante"></div>
+        </div>
+        <div class="stats shadow w-full">
+          <div class="stat">
+            <div class="stat-figure text-secondary">
+              <img src="img/icon/price.png" alt="price-icon" class="h-12" />
+            </div>
+            <div class="stat-title">Price</div>
+            <div class="stat-value"></div>
+            <div class="stat-desc">Price of meal for 2 with drinks</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-figure text-secondary">
+              <img src="img/icon/service.png" alt="service-icon" class="h-12" />
+            </div>
+            <div class="stat-title">Service</div>
+            <div class="stat-value"></div>
+            <div class="stat-desc">
+              <a href="https://reviewgrower.com/zagat-ratings-scale/">Zagat</a
+              >scale 1-30
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-figure text-secondary">
+              <img src="img/icon/pizza.png" alt="food-icon" class="h-12" />
+            </div>
+            <div class="stat-title">Food</div>
+            <div class="stat-value"></div>
+            <div class="stat-desc">
+              <a href="https://reviewgrower.com/zagat-ratings-scale/">Zagat</a
+              >scale 1-30
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="map" class="h-2/3"></div>
       <footer class="footer footer-center p-4 bg-base-300 text-base-content">
         <div>
