@@ -1,7 +1,8 @@
 import "./style.css";
 
 const map = L.map("map").setView([40.76, -73.98], 15);
-
+const markers = [];
+let restaurants = {};
 const osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -11,8 +12,14 @@ fetch("/data.json")
   .then((response) => response.json())
   .then((json) => {
     json.forEach((item) => {
-      let marker = L.marker([item.latitude, item.longitude]).addTo(map);
-      marker.bindPopup(`${item.Restaurant}`);
+      let marker = L.marker([item.latitude, item.longitude]);
+      let restaurantName = `${item.Restaurant}`;
+      marker.addTo(map);
+      markers[item.Restaurant.toLowerCase()] = marker;
+      marker.bindPopup(
+        "<a href=" + restaurantName + ">" + restaurantName + "</a>"
+      );
+      restaurants = L.layerGroup(markers);
     });
   });
 
@@ -32,14 +39,15 @@ searchButton.addEventListener("click", () => {
   fetch("/data.json")
     .then((response) => response.json())
     .then((json) => {
-      json.forEach((item) => {
-        if (item.Restaurant === searchValue) {
+      for (let i = 0; i < json.length; i++) {
+        let item = json[i];
+        if (item.Restaurant.toLowerCase() === searchValue.toLowerCase()) {
           map.setView([item.latitude, item.longitude], 18);
+          markers[item.Restaurant.toLowerCase()].openPopup();
           restaurantName.innerText = item.Restaurant;
           restaurantPriceValue.innerText = item.Price + "$";
           restaurantFoodValue.innerText = item.Food;
           restaurantServiceValue.innerText = item.Service;
-          marker.bindPopup(item.Restaurant).openPopup();
           if (errorContainer.classList.contains("hidden") === false) {
             errorContainer.classList.add("hidden");
             searchInput.classList.replace(
@@ -49,12 +57,13 @@ searchButton.addEventListener("click", () => {
           } else {
             console.log("error container is hidden");
           }
+          break;
         } else {
           searchInput.classList.replace("border-slate-600", "border-rose-500");
           error.innerText = "Restaurant " + searchValue + " not found!";
           errorContainer.classList.remove("hidden");
         }
-      });
+      }
     });
 });
 
@@ -66,10 +75,10 @@ priceFilter.addEventListener("change", () => {
     .then((response) => response.json())
     .then((json) => {
       json.forEach((item) => {
-        if (item.Price === priceValue) {
-          map.removeLayer(marker);
-          let marker = L.marker([item.latitude, item.longitude]).addTo(map);
-          marker.bindPopup(item.Restaurant).openPopup();
+        if (item.Price <= priceValue) {
+          map.setView([item.latitude, item.longitude], 13);
+          markers[item.Restaurant.toLowerCase()].openPopup();
+          console.log(item.Price);
         }
       });
     });
