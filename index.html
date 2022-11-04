@@ -42,11 +42,26 @@
               tabindex="0"
               class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li><a href="index.html">Homepage</a></li>
-              <li><a>Map Visualization</a></li>
-              <li><label for="my-modal-4"> Contact me</label></li>
+              <li class="mb-1 text-sm">Price:</li>
+              <input
+                id="price-filter"
+                type="range"
+                min="0"
+                max="100"
+                value="25"
+                class="range range-xs range-primary"
+                step="25"
+              />
+              <div class="w-full flex justify-between text-xs px-2">
+                <span>0</span>
+                <span>25</span>
+                <span>50</span>
+                <span>75</span>
+                <span>100</span>
+              </div>
             </ul>
           </div>
+          <label class="text-sm font-bold">Filtra</label>
         </div>
         <div class="navbar-center">
           <a class="btn btn-ghost normal-case text-xl" href="index.html"
@@ -59,7 +74,13 @@
           >
         </div>
         <div class="navbar-end">
-          <button class="btn btn-ghost btn-circle">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Type here"
+            class="input input-sm w-full max-w-xs mr-1 border-slate-600"
+          />
+          <button id="search-button" class="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -75,32 +96,34 @@
               />
             </svg>
           </button>
-          <button class="btn btn-ghost btn-circle">
-            <div class="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              <span class="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
         </div>
       </div>
 
-      <div>
+      <div class="data-content">
+        <div
+          id="error-container"
+          class="alert alert-error shadow-lg mb-3 hidden"
+        >
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span id="error"></span>
+          </div>
+        </div>
         <div class="flex items-center mb-6">
           <div class="stat-desc">Nome del ristorante: &nbsp;</div>
-          <div class="nome-ristorante"></div>
+          <div id="restaurant-name" class="font-bold text-lg"></div>
         </div>
         <div class="stats shadow w-full">
           <div class="stat">
@@ -108,7 +131,7 @@
               <img src="img/icon/price.png" alt="price-icon" class="h-12" />
             </div>
             <div class="stat-title">Price</div>
-            <div class="stat-value"></div>
+            <div id="restaurant-price" class="stat-value text-secondary"></div>
             <div class="stat-desc">Price of meal for 2 with drinks</div>
           </div>
 
@@ -117,7 +140,10 @@
               <img src="img/icon/service.png" alt="service-icon" class="h-12" />
             </div>
             <div class="stat-title">Service</div>
-            <div class="stat-value"></div>
+            <div
+              id="restaurant-service"
+              class="stat-value text-secondary"
+            ></div>
             <div class="stat-desc">
               <a href="https://reviewgrower.com/zagat-ratings-scale/">Zagat</a
               >scale 1-30
@@ -129,7 +155,7 @@
               <img src="img/icon/pizza.png" alt="food-icon" class="h-12" />
             </div>
             <div class="stat-title">Food</div>
-            <div class="stat-value"></div>
+            <div id="restaurant-food" class="stat-value text-secondary"></div>
             <div class="stat-desc">
               <a href="https://reviewgrower.com/zagat-ratings-scale/">Zagat</a
               >scale 1-30
@@ -145,42 +171,6 @@
         </div>
       </footer>
     </div>
-
-    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-    <label for="my-modal-4" class="modal cursor-pointer">
-      <label class="modal-box relative" for="">
-        <div class="card-body">
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              placeholder="email"
-              class="input input-bordered"
-            />
-          </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Password</span>
-            </label>
-            <input
-              type="password"
-              placeholder="password"
-              class="input input-bordered"
-            />
-            <label class="label">
-              <a href="#" class="label-text-alt link link-hover"
-                >Forgot password?</a
-              >
-            </label>
-          </div>
-          <div class="form-control mt-6">
-            <button class="btn btn-primary">Login</button>
-          </div>
-        </div>
-      </label>
-    </label>
 
     <script type="module" src="/main.js"></script>
   </body>
