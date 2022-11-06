@@ -2,30 +2,13 @@ import "./style.css";
 
 const map = L.map("map").setView([40.76, -73.98], 15);
 const markers = [];
-let restaurants = {};
 const osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-fetch("/data.json")
-  .then((response) => response.json())
-  .then((json) => {
-    json.forEach((item) => {
-      let marker = L.marker([item.latitude, item.longitude]);
-      let restaurantName = `${item.Restaurant}`;
-      marker.addTo(map);
-      markers[item.Restaurant.toLowerCase()] = marker;
-      marker.bindPopup(
-        "<a href=" + restaurantName + ">" + restaurantName + "</a>"
-      );
-      restaurants = L.layerGroup(markers);
-    });
-  });
-
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
-
 const restaurantName = document.getElementById("restaurant-name");
 const restaurantPriceValue = document.getElementById("restaurant-price");
 const restaurantFoodValue = document.getElementById("restaurant-food");
@@ -33,6 +16,24 @@ const restaurantServiceValue = document.getElementById("restaurant-service");
 
 const error = document.getElementById("error");
 const errorContainer = document.getElementById("error-container");
+
+fetch("/data.json")
+  .then((response) => response.json())
+  .then((json) => {
+    json.forEach((item) => {
+      let marker = L.marker([item.latitude, item.longitude]);
+      let restaurantNameValue = `${item.Restaurant}`;
+      marker.addTo(map);
+      markers[item.Restaurant.toLowerCase()] = marker;
+      marker.bindPopup(restaurantNameValue);
+      marker.addEventListener("click", () => {
+        restaurantName.innerText = item.Restaurant;
+        restaurantPriceValue.innerText = item.Price + "$";
+        restaurantFoodValue.innerText = item.Food;
+        restaurantServiceValue.innerText = item.Service;
+      });
+    });
+  });
 
 searchButton.addEventListener("click", () => {
   let searchValue = searchInput.value;
@@ -78,7 +79,7 @@ priceFilter.addEventListener("change", () => {
         if (item.Price <= priceValue) {
           map.setView([item.latitude, item.longitude], 13);
           markers[item.Restaurant.toLowerCase()].openPopup();
-          console.log(item.Price);
+          console.log(item.Restaurant);
         }
       });
     });
