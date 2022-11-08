@@ -18,11 +18,11 @@
     <title>Manhattan Italian Restaurants</title>
   </head>
   <body>
-    <div class="container mx-auto h-screen flex flex-col justify-between">
+    <div class="container mx-auto flex h-screen flex-col justify-between">
       <div class="navbar bg-base-100">
         <div class="navbar-start">
           <div class="dropdown">
-            <label tabindex="0" class="btn btn-ghost btn-circle">
+            <label tabindex="0" class="btn-ghost btn-circle btn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
@@ -40,7 +40,7 @@
             </label>
             <ul
               tabindex="0"
-              class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              class="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
             >
               <li class="mb-1 text-sm">Price:</li>
               <input
@@ -49,10 +49,10 @@
                 min="25"
                 max="100"
                 value="25"
-                class="range range-xs range-primary"
+                class="range range-primary range-xs"
                 step="25"
               />
-              <div class="w-full flex justify-between text-xs px-2">
+              <div class="flex w-full justify-between px-2 text-xs">
                 <span>25</span>
                 <span>50</span>
                 <span>75</span>
@@ -63,11 +63,11 @@
           <label class="text-sm font-bold">Filtra</label>
         </div>
         <div class="navbar-center">
-          <a class="btn btn-ghost normal-case text-xl" href="index.html"
+          <a class="btn-ghost btn text-xl normal-case" href="index.html"
             ><img
               src="img/icon/restaurant.png"
               alt="icon-restaurant"
-              class="h-6 mr-2"
+              class="mr-2 h-6"
             />
             Manhattan Italian Restaurants</a
           >
@@ -77,9 +77,9 @@
             id="search-input"
             type="text"
             placeholder="Type here"
-            class="input input-sm w-full max-w-xs mr-1 border-slate-600"
+            class="input input-sm mr-1 w-full max-w-xs border-slate-600"
           />
-          <button id="search-button" class="btn btn-ghost btn-circle">
+          <button id="search-button" class="btn-ghost btn-circle btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -101,12 +101,12 @@
       <div class="data-content">
         <div
           id="error-container"
-          class="alert alert-error shadow-lg mb-3 hidden"
+          class="alert alert-error mb-3 hidden shadow-lg"
         >
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="stroke-current flex-shrink-0 h-6 w-6"
+              class="h-6 w-6 flex-shrink-0 stroke-current"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -120,11 +120,11 @@
             <span id="error"></span>
           </div>
         </div>
-        <div class="flex items-center mb-6">
+        <div class="mb-6 flex items-center">
           <div class="stat-desc">Nome del ristorante: &nbsp;</div>
-          <div id="restaurant-name" class="font-bold text-lg"></div>
+          <div id="restaurant-name" class="text-lg font-bold"></div>
         </div>
-        <div class="stats shadow w-full">
+        <div class="stats w-full shadow">
           <div class="stat">
             <div class="stat-figure text-secondary">
               <img src="img/icon/price.png" alt="price-icon" class="h-12" />
@@ -164,7 +164,7 @@
       </div>
 
       <div id="map" class="h-2/3"></div>
-      <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+      <footer class="footer footer-center bg-base-300 p-4 text-base-content">
         <div>
           <p>Copyright © 2022 - Luca Protelli 5^CI</p>
         </div>
